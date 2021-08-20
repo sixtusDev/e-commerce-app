@@ -5,14 +5,15 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 
+// External Scripts
+import App from "./App";
+import store from "./redux/store/store";
+
 // Styles
 import "./index.css";
 
-// External Scripts
-import App from "./App";
-
 ReactDOM.render(
-  <Provider>
+  <Provider store={store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
