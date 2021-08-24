@@ -47,9 +47,9 @@ const Header = ({ currentUser, toggleCartItem, hidden }) => {
   );
 };
 
-const mapStateToProps = ({ user, cartItems }) => ({
+const mapStateToProps = ({ user, cart }) => ({
   currentUser: user.currentUser,
-  hidden: cartItems.hidden,
+  hidden: cart.hidden,
 });
 
 const mapDispatchToProps = (dispatch) => ({
