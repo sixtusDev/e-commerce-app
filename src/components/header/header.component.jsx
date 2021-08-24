@@ -6,6 +6,8 @@ import { connect } from "react-redux";
 
 // External Scripts
 import { auth } from "../../firebase/firebase.utils";
+import CartIcon from "../cart-icon/cart-icon";
+import CartDropdown from "../cart-dropdown/cart-dropdown";
 
 // SVG
 import { ReactComponent as Logo } from "../../assets/crown.svg";
@@ -35,7 +37,9 @@ const Header = ({ currentUser }) => {
             SIGN IN
           </Link>
         )}
+        <CartIcon />
       </div>
+      <CartDropdown />
     </div>
   );
 };
