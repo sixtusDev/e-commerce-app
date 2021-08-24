@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { auth } from "../../firebase/firebase.utils";
 import CartIcon from "../cart-icon/cart-icon";
 import CartDropdown from "../cart-dropdown/cart-dropdown";
+import { toggleCartItem } from "../../redux/cart/cart-actions";
 
 // SVG
 import { ReactComponent as Logo } from "../../assets/crown.svg";
@@ -15,7 +16,7 @@ import { ReactComponent as Logo } from "../../assets/crown.svg";
 // Styles
 import "./header.styles.scss";
 
-const Header = ({ currentUser }) => {
+const Header = ({ currentUser, toggleCartItem, hidden }) => {
   return (
     <div className="header">
       <Link className="logo-container" to="/">
@@ -37,15 +38,22 @@ const Header = ({ currentUser }) => {
             SIGN IN
           </Link>
         )}
-        <CartIcon />
+        <div onClick={toggleCartItem}>
+          <CartIcon />
+        </div>
       </div>
-      <CartDropdown />
+      {hidden ? "" : <CartDropdown />}
     </div>
   );
 };
 
-const mapStateToProps = ({ user }) => ({
+const mapStateToProps = ({ user, cartItems }) => ({
   currentUser: user.currentUser,
+  hidden: cartItems.hidden,
 });
 
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = (dispatch) => ({
+  toggleCartItem: () => dispatch(toggleCartItem()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

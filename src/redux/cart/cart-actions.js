@@ -7,6 +7,6 @@ export const toggleCartItem = () => ({
 });
 
 export const addItem = (item) => ({
-  type: cartTypes.addItem,
+  type: cartTypes.ADD_ITEM,
   payload: item,
 });

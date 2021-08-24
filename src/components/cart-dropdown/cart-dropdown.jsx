@@ -1,4 +1,5 @@
 // Import Statements //
+
 // External Scripts
 import CustomButton from "../custom-button/custom-button.component";
 
@@ -8,7 +9,9 @@ import "./cart-dropdown.scss";
 const CartDropdown = () => (
   <div className="cart-dropdown">
     <div className="cart-items"></div>
-    <CustomButton>GO TO CHECKOUT</CustomButton>
+    <CustomButton onClick={() => console.log("hello")}>
+      GO TO CHECKOUT
+    </CustomButton>
   </div>
 );
 
