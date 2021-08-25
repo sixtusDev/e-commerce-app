@@ -13,9 +13,11 @@ import "./cart-dropdown.scss";
 const CartDropdown = ({ cartItems }) => (
   <div className="cart-dropdown">
     <div className="cart-items">
-      {cartItems.map((item) => (
-        <CartItem key={item.id} item={item} />
-      ))}
+      {cartItems.length ? (
+        cartItems.map((item) => <CartItem key={item.id} item={item} />)
+      ) : (
+        <span className="empty-message">No item in your cart</span>
+      )}
     </div>
     <CustomButton onClick={() => console.log("hello")}>
       GO TO CHECKOUT
