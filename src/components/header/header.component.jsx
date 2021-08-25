@@ -9,7 +9,7 @@ import { createStructuredSelector } from "reselect";
 import { auth } from "../../firebase/firebase.utils";
 import CartIcon from "../cart-icon/cart-icon";
 import CartDropdown from "../cart-dropdown/cart-dropdown";
-import { toggleCartItem } from "../../redux/cart/cart-actions";
+import { toggleCartHidden } from "../../redux/cart/cart-actions";
 import { selectCartHidden } from "../../redux/cart/cart-selectors";
 import { selectCurrentUser } from "../../redux/user/user-selectors";
 
@@ -19,7 +19,7 @@ import { ReactComponent as Logo } from "../../assets/crown.svg";
 // Styles
 import "./header.styles.scss";
 
-const Header = ({ currentUser, toggleCartItem, hidden }) => {
+const Header = ({ currentUser, toggleCartHidden, hidden }) => {
   return (
     <div className="header">
       <Link className="logo-container" to="/">
@@ -41,7 +41,7 @@ const Header = ({ currentUser, toggleCartItem, hidden }) => {
             SIGN IN
           </Link>
         )}
-        <div onClick={toggleCartItem}>
+        <div onClick={toggleCartHidden}>
           <CartIcon />
         </div>
       </div>
@@ -56,7 +56,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleCartItem: () => dispatch(toggleCartItem()),
+  toggleCartHidden: () => dispatch(toggleCartHidden()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
