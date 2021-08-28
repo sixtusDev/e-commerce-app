@@ -1,7 +1,7 @@
 // Import Statements //
 // External Scripts
 import cartTypes from "./cart-types";
-import { addItemToCart } from "./cart-utils";
+import { addItemToCart, decrementItem } from "./cart-utils";
 
 const INITIAL_STATE = {
   hidden: true,
@@ -19,6 +19,11 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         cartItems: addItemToCart(state.cartItems, action.payload),
+      };
+    case cartTypes.DECREMENT_ITEM:
+      return {
+        ...state,
+        cartItems: decrementItem(state.cartItems, action.payload),
       };
     case cartTypes.CLEAR_ITEM_FROM_CART:
       return {
