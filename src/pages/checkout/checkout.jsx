@@ -2,11 +2,7 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
 import { selectCartItems } from "../../redux/cart/cart-selectors";
-<<<<<<< HEAD
 import CheckoutItem from "../../components/checkout-item/checkout-item";
-=======
-import ChekoutItem from "../../components/checkout-item/checkout-item";
->>>>>>> 0bb109870e4fc2f03503e080a1cf05c48d194234
 
 import "./checkout.scss";
 
@@ -30,11 +26,7 @@ const CheckoutPage = ({ cartItems }) => (
       </div>
     </div>
     {cartItems.map((cartItem) => (
-<<<<<<< HEAD
       <CheckoutItem key={cartItem.id} cartItem={cartItem} />
-=======
-      <ChekoutItem key={cartItem.id} cartItem={cartItem} />
->>>>>>> 0bb109870e4fc2f03503e080a1cf05c48d194234
     ))}
     <div className="total">TOTAL: $78</div>
   </div>
