@@ -12,6 +12,7 @@ import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up
 import Header from "./components/header/header.component";
 import { setCurrentUser } from "./redux/user/user-actions";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import { toggleCartHidden } from "./redux/cart/cart-actions";
 
 // Styles
 import "./App.css";
@@ -19,7 +20,6 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    console.log(this.props.currentUser);
     const { setCurrentUser } = this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
@@ -44,8 +44,9 @@ class App extends React.Component {
   }
 
   render() {
+    const { toggleCartHidden, hidden } = this.props;
     return (
-      <div>
+      <div onClick={hidden ? null : toggleCartHidden}>
         <Header />
         <Switch>
           <Route exact path="/" component={HomePage} />
@@ -68,12 +69,14 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({ user }) => ({
+const mapStateToProps = ({ user, cart }) => ({
   currentUser: user.currentUser,
+  hidden: cart.hidden,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+  toggleCartHidden: () => dispatch(toggleCartHidden()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
