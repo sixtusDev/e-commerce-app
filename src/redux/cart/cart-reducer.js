@@ -1,7 +1,7 @@
 // Import Statements //
 // External Scripts
 import cartTypes from "./cart-types";
-import { addItemToCart } from "./cart-utils";
+import { addItemToCart, decrementItem } from "./cart-utils";
 
 const INITIAL_STATE = {
   hidden: true,
@@ -11,7 +11,6 @@ const INITIAL_STATE = {
 const cartReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case cartTypes.TOGGLE_CART_HIDDEN:
-      console.log(INITIAL_STATE);
       return {
         ...state,
         hidden: !state.hidden,
@@ -20,6 +19,18 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         cartItems: addItemToCart(state.cartItems, action.payload),
+      };
+    case cartTypes.DECREMENT_ITEM:
+      return {
+        ...state,
+        cartItems: decrementItem(state.cartItems, action.payload),
+      };
+    case cartTypes.CLEAR_ITEM_FROM_CART:
+      return {
+        ...state,
+        cartItems: state.cartItems.filter(
+          (cartItem) => cartItem.id !== action.payload.id
+        ),
       };
     default:
       return state;
